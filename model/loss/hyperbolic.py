@@ -123,14 +123,35 @@ class ContrastiveExperimentMixin:
         options = cfg.get("contrastive", {})
         geometry = options.get("geometry", "euclidean")
         hyperbolic = options.get("hyperbolic", {})
-        self.contrastive_geometry = ContrastiveGeometry(
-            geometry, float(hyperbolic.get("curvature", 0.1)))
+        if cfg.get("hnm", {}).get("enabled", False):
+            from .hnm import HNMGeometry
+            if geometry != "hyperbolic":
+                raise ValueError("HNM requires the existing hyperbolic geometry")
+            self.contrastive_geometry = HNMGeometry(
+                float(hyperbolic.get("curvature", 0.1)), cfg.hnm)
+        else:
+            self.contrastive_geometry = ContrastiveGeometry(
+                geometry, float(hyperbolic.get("curvature", 0.1)))
         self.scale_criterion = MultiScaleContrastiveLoss(
             self.contrastive_geometry, options.get("scales", {}))
-        criterion = self.distill_criterion if self.pretrain_mode in (2, 3) else self.criterion
-        if geometry == "hyperbolic":
-            criterion.geometry = self.contrastive_geometry
-        criterion.symmetric = bool(options.get("symmetric", True))
+        if cfg.get("hnm", {}).get("enabled", False):
+            from .hnm import HNMPaperContrastiveLoss
+            if not options.get("symmetric", True):
+                raise ValueError("HNM paper Eq. (9) requires bidirectional contrastive learning")
+            criterion = HNMPaperContrastiveLoss(
+                self.contrastive_geometry, float(cfg.loss_temp),
+                float(cfg.hnm.contrastive.minimum_temperature))
+            if self.pretrain_mode in (2, 3):
+                self.distill_criterion = criterion
+            else:
+                self.criterion = criterion
+            print("[HNM] paper Eqs. (8)-(9): negative-only denominators, batch sums; "
+                  f"learnable temperature starts at {cfg.loss_temp}, min={criterion.minimum_temperature}")
+        else:
+            criterion = self.distill_criterion if self.pretrain_mode in (2, 3) else self.criterion
+            if geometry == "hyperbolic":
+                criterion.geometry = self.contrastive_geometry
+            criterion.symmetric = bool(options.get("symmetric", True))
         print(f"[HyperAMA] geometry={geometry}, c={hyperbolic.get('curvature', 0.1)}, "
               f"temperature={cfg.loss_temp}, scales={self.scale_criterion.scales}")
 
@@ -141,4 +162,11 @@ class ContrastiveExperimentMixin:
                      on_step=False, on_epoch=True, prog_bar=False)
         self.log(f"ext/{phase}/loss_scales_weighted", total,
                  on_step=False, on_epoch=True, prog_bar=False)
+        if self.cfg.get("hnm", {}).get("enabled", False):
+            auxiliary, diagnostics = self.contrastive_geometry.hnm_loss(
+                eeg, targets, self.current_epoch)
+            for name, value in diagnostics.items():
+                self.log(f"ext/{phase}/hnm_{name}", value,
+                         on_step=False, on_epoch=True, prog_bar=False)
+            total = total + auxiliary
         return total

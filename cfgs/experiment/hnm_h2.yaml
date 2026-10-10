@@ -1,0 +1,20 @@
+# @package _global_
+# HNM uses paper Eqs. (8)-(9); the original Hyper experiment is unchanged.
+log:
+  run: 212
+  exp_name: hnm_h2
+train:
+  hnm:
+    enabled: true
+    spec_id: hyperama_hnm_constant_cone_v4
+    contrastive:
+      minimum_temperature: 0.01  # Learn log(tau), starting at inherited train.loss_temp=0.07.
+    radius:
+      cone_k: 0.1
+      aperture_max_deg: 30.0
+      maximum: 2.5
+      initial: 2.0
+      minimum_direction_norm: 1.0e-8
+    cone:
+      weight: 0.01  # Constant from the first epoch; no cone-loss warmup.
+      tangent_epsilon: 1.0e-10

@@ -1,0 +1,75 @@
+{
+  "created_local": "2026-10-10T22:56:30.849506",
+  "spec_id": "hyperama_hnm_minimal_v1",
+  "backup": {
+    "path": "D:\\pytorch_study\\Guolab\\XiongIdea\\backups\\HyperAMA-before-HNM-20261010-221614",
+    "original_file_count": 208,
+    "archive_sha256": "67653b83828b012ec3ae4199e49a93c18a610c9a561baa56cfe868c5f7d302da"
+  },
+  "previous_hnm_backup": "D:\\pytorch_study\\Guolab\\XiongIdea\\backups\\HyperAMA-before-minimal-HNM-20261010-224709\\HyperAMA-EEG-main.zip",
+  "source_audit": {
+    "modified_existing_files": [
+      "model/loss/hyperbolic.py"
+    ],
+    "removed_original_files": [],
+    "new_files": [
+      "cfgs/experiment/hnm_h2.yaml",
+      "docs/HNM实现检查报告.json",
+      "docs/HNM测试输出.txt",
+      "docs/HNM运行说明.md",
+      "model/loss/hnm.py",
+      "tests/test_hnm.py"
+    ],
+    "byte_identical_original_files": 207,
+    "existing_yaml_and_requirements_unchanged": true,
+    "restored_original_files": [
+      "model/__init__.py",
+      "train_ext.py",
+      "extract_features.py",
+      "README.md"
+    ],
+    "implementation_sha256": {
+      "model/loss/hyperbolic.py": "5ac9f1e3e05d2d48631c4f2bde3875b9f9b6f62f793b0f951beb25256dd9d99d",
+      "cfgs/experiment/hnm_h2.yaml": "6cb00171606a54412452fe86cd1f8aa0d8c507fb7b9cf36858ed4c42bed59533",
+      "docs/HNM运行说明.md": "eb49bae0feffc6f9c57e634642ad3c97981baab2bbe5671055274d2e5e5e6fcf",
+      "model/loss/hnm.py": "ab0a4693f1c8c1ba4ce876c87700a1f4885a65a24f4109bc86af7401d61ff998",
+      "tests/test_hnm.py": "c62aace3a23b9b23dcb84faaa63afb106b19857af57efc3f86fc6e635744c5cc"
+    }
+  },
+  "tests": {
+    "passed": true,
+    "run": 36,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "log": "HNM测试输出.txt"
+  },
+  "environment": {
+    "torch": "2.5.1",
+    "geoopt": "0.5.1",
+    "pytorch-lightning": "2.6.5",
+    "hydra-core": "1.3.2",
+    "omegaconf": "2.3.0",
+    "transformers": "5.14.0",
+    "torchmetrics": "1.9.0",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "parameter_report": {
+    "existing_training_hyperparameters_changed": [],
+    "new_config": "cfgs/experiment/hnm_h2.yaml",
+    "run_identity": {
+      "run": 212,
+      "exp_name": "hnm_h2"
+    },
+    "new_hnm_numeric_defaults_changed_since_previous_h2": [],
+    "integration_change": "HNM auxiliary terms enter the existing scale-loss hook and therefore receive the original w_clip multiplier (default 1.0). Radius heads consume normalized directions consistently across InfoNCE and auxiliary calls."
+  },
+  "limits": [
+    "No real-data training or effectiveness evaluation.",
+    "No server changes.",
+    "Q1 material-identity shortcut remains unresolved.",
+    "Q2 bounded radii prevent unbounded escape; 1.5 distance and 0.1 radial gap remain soft goals.",
+    "Original label-assisted validation and checkpoint selection are preserved."
+  ]
+}

@@ -1,0 +1,97 @@
+test_actual_faced_backbone_one_synthetic_backward (test_hnm.HNMTests) ... [Model Init] Projector input dimension: 1024 (original: 256 x 2^2)
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+ok
+test_auxiliary_hook_respects_original_total_loss_scaling (test_hnm.HNMTests) ... [HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+ok
+test_checkpoint_roundtrip_and_original_extraction_loading (test_hnm.HNMTests) ... [HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+ok
+test_cone_against_lorentz_tangent_oracle (test_hnm.HNMTests) ... ok
+test_existing_hyperparameters_unchanged (test_hnm.HNMTests) ... ok
+test_guards_push_correct_direction_and_are_soft (test_hnm.HNMTests) ... ok
+test_initial_mapping_equals_original_and_rng_is_preserved (test_hnm.HNMTests) ... ok
+test_invalid_configuration_and_disabled_hnm (test_hnm.HNMTests) ... [HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+ok
+test_mixed_precision_input_has_finite_gradients (test_hnm.HNMTests) ... ok
+test_original_masks_and_emotion_scale_reused_with_learned_radii (test_hnm.HNMTests) ... ok
+test_original_train_validation_targets_and_losses_preserved (test_hnm.HNMTests) ... Align frozen in fp32 evaluation mode
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+Align frozen in fp32 evaluation mode
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+Align frozen in fp32 evaluation mode
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+Align frozen in fp32 evaluation mode
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+ok
+test_outward_inward_coincident_and_warmup (test_hnm.HNMTests) ... ok
+test_radius_bounds_gradients_and_original_geoopt_distance (test_hnm.HNMTests) ... ok
+test_same_mapping_inside_original_nce_and_auxiliary (test_hnm.HNMTests) ... ok
+test_bfloat16_input_geometry_is_float32_with_finite_gradients (test_hyperbolic.HyperbolicTests) ... ok
+test_configuration_ablation_changes_only_emotion_and_run_identity (test_hyperbolic.HyperbolicTests) ... ok
+test_disabled_emotion_needs_no_labels_and_is_exactly_zero (test_hyperbolic.HyperbolicTests) ... ok
+test_distance_only_preserves_faced_and_seed_masks (test_hyperbolic.HyperbolicTests) ... ok
+test_emotion_multi_positive_loss_has_independent_oracle (test_hyperbolic.HyperbolicTests) ... ok
+test_mshcl_mapping_against_closed_form (test_hyperbolic.HyperbolicTests) ... ok
+test_train_validation_and_checkpoint_roundtrip (test_hyperbolic.HyperbolicTests) ... [HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': True, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': True, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': True, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': True, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+ok
+test_dataset_defaults_preserve_different_experiments (test_protocols.ProtocolTests) ... ok
+test_extraction_respects_faced_pkl_and_seed_shard_formats (test_protocols.ProtocolTests) ... [One-Step Load] Reading FACED .pkl from: D:\pytorch_study\Guolab\XiongIdea\tools\hnm-test-temp\tmpnksaloku\FACED\all_pkl_files
+Resampling: 250 Hz -> 125 Hz | Window: 5s
+Data loaded successfully. Output shape: (728, 2, 625)
+ok
+test_faced_playback_order_roundtrip (test_protocols.ProtocolTests) ... ok
+test_fold_normalization_uses_only_training_subjects (test_protocols.ProtocolTests) ... ok
+test_lds_does_not_cross_trial_boundaries (test_protocols.ProtocolTests) ... ok
+test_same_content_is_excluded_as_a_negative (test_protocols.ProtocolTests) ... ok
+test_seed_minimum_is_separate_for_every_session_and_video (test_protocols.ProtocolTests) ...  Cache not found. Starting processing from scratch...
+ [SEED Load] Scanning folders 1, 2, 3 in: D:\pytorch_study\Guolab\XiongIdea\tools\hnm-test-temp\tmping6dgwo
+ Resampling: Raw(200Hz) -> 125 Hz | Window: 5s | Step: 2s
+Processing Subject 1/2...Processing Subject 2/2...
+ Data processing finished.
+ [Alignment] Truncating data to match minimum samples across subjects...
+ Final Data Shape: (210, 2, 625)
+ Metadata Shape Check: n_samples_sessions (2, 15)
+ Total Slices: 210
+ Sliced data cached to: D:\pytorch_study\Guolab\XiongIdea\tools\hnm-test-temp\tmping6dgwo\sliced_len5_step2_SEED
+ok
+test_seed_raw_trials_and_multimodal_indices (test_protocols.ProtocolTests) ...  Cache not found. Starting processing from scratch...
+ [SEED Load] Scanning folders 1, 2, 3 in: D:\pytorch_study\Guolab\XiongIdea\tools\hnm-test-temp\tmplsgi1inu
+ Resampling: Raw(200Hz) -> 125 Hz | Window: 5s | Step: 2s
+Processing Subject 1/2...Processing Subject 2/2...
+ Data processing finished.
+ [Alignment] Truncating data to match minimum samples across subjects...
+ Final Data Shape: (60, 2, 625)
+ Metadata Shape Check: n_samples_sessions (1, 15)
+ Total Slices: 60
+ Sliced data cached to: D:\pytorch_study\Guolab\XiongIdea\tools\hnm-test-temp\tmplsgi1inu\sliced_len5_step2_SEED
+save sliced data finished!
+ok
+test_training_fusion_uses_dataset_specific_groups (test_protocols.ProtocolTests) ... [HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+ok
+test_validation_fusion_uses_individual_ce_alpha (test_protocols.ProtocolTests) ... [HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+[HyperAMA] geometry=hyperbolic, c=0.1, temperature=0.07, scales={'emotion': {'enabled': False, 'weight': 0.1, 'temperature': 0.07, 'symmetric': True}}
+ok
+test_citation_metadata_links_the_accepted_paper (test_repository.RepositoryTests) ... ok
+test_dataset_configs_compose_with_relative_paths (test_repository.RepositoryTests) ... ok
+test_faced_windowing_with_small_synthetic_input (test_repository.RepositoryTests) ... [22:56:30] 开始处理 EEG 数据...
+EEG 处理完成。保存至: D:\pytorch_study\Guolab\XiongIdea\tools\hnm-test-temp\tmp3n5h_rmw\output\processed_eeg_features.npy
+最终形状: (12, 3, 4) (预期: 12, 3, 4)
+ok
+test_required_repository_documents_exist (test_repository.RepositoryTests) ... ok
+test_source_files_do_not_contain_decorative_symbols (test_repository.RepositoryTests) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 7.818s
+
+OK
