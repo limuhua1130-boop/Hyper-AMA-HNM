@@ -291,7 +291,7 @@ class ExtractorModel(ContrastiveExperimentMixin, pl.LightningModule):
             loss_probe_t = self.probe_criterion(t_logits, labels)
             loss_probe_i = self.probe_criterion(i_logits, labels)
             loss_probes = loss_probe_t + loss_probe_i
-
+            # CORE-2: 文本损失越小，文本权重越大；权重在 no_grad 内计算，随后按视频平均。
             with torch.no_grad():
                 loss_func_none = nn.CrossEntropyLoss(reduction='none')
                 loss_t_sample = loss_func_none(t_logits, labels)
@@ -362,7 +362,7 @@ class ExtractorModel(ContrastiveExperimentMixin, pl.LightningModule):
 
         # ==============================================
 
-        # 应用 Loss 权重系数
+        # CORE-4B: 主对齐与探针损失已合成；这里再加入配置启用的情绪辅助损失。
         self.log('ext/train/loss_alignment', loss_distill if self.pretrain_mode == 2 else loss,
                  on_step=False, on_epoch=True, prog_bar=False)
         loss = loss + self._scale_losses(proj_eeg, target_feat, 'train',
@@ -644,7 +644,7 @@ class MLPModel(pl.LightningModule):
 
     def configure_optimizers(self):
         return torch.optim.Adam(self.parameters(), lr=self.lr, weight_decay=self.wd)
-
+    # CORE-5B: 下游 MLP 读取已保存的 EEG 特征，用情绪标签计算分类交叉熵。
     def training_step(self, batch, batch_idx):
         data, labels = batch
         logits = self.model(data)

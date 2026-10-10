@@ -28,7 +28,7 @@ class ContrastiveGeometry(nn.Module):
         return F.normalize(features.reshape(features.shape[0], -1).float(), dim=1)
 
     def project(self, features):
-        # Disable AMP for geometry; expmap/dist near the boundary need FP32.
+        # CORE-3: 特征先单位归一化，再映射到庞加莱球；关闭 AMP，以 FP32 计算几何。
         with torch.autocast(device_type=features.device.type, enabled=False):
             features = self._normalize(features)
             if self.geometry == "hyperbolic":
@@ -51,7 +51,7 @@ def emotion_positive_mask(*, labels, **metadata):
     if labels is None:
         raise ValueError("Emotion scale requires training/evaluation emotion labels")
     labels = labels.reshape(-1)
-    # Includes the corresponding target and every same-emotion target.
+    # CORE-4: 情绪相同即为正样本，含对角配对；此关系独立于主对齐的假负样本掩码。
     return labels[:, None].eq(labels[None, :])
 
 

@@ -256,7 +256,7 @@ class MultiModalInfoNCELoss(nn.Module):
         preds = F.normalize(preds, dim=1)
         targets = F.normalize(targets, dim=1)
 
-        # 3. ================= [计算相似度矩阵] =================
+        # CORE-3B: 形成 EEG 与语义目标的两两分数；双曲模式用负距离，再除以对比温度。
         if getattr(self, 'geometry', None) is not None:
             logits = self.geometry(preds, targets) / self.temperature
         else:
@@ -300,7 +300,7 @@ class MultiModalInfoNCELoss(nn.Module):
         # 使用 -1e4 是为了兼容 bfloat16 精度，防止溢出
         logits = logits.masked_fill(mask, -1e4)
 
-        # 5. ================= [计算双向/单向 Loss] =================
+        # CORE-3C: labels 是 batch 配对序号而非情绪类别；交叉熵要求对应目标得分更高。
         batch_size = preds.shape[0]
         labels = torch.arange(batch_size, dtype=torch.long).to(device)
 

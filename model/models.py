@@ -174,7 +174,7 @@ class Conv_att_simple_new(nn.Module):
         if 'initial' in self.stratified:
             input = stratified_layerNorm(input, int(input.shape[0] / 2))
 
-        # 1. TSTC 主干提取
+        # CORE-1: 时间卷积和四个时空分支提取 EEG 模式，随后注意力与池化生成特征。
         out = self.timeConv(input)
         p = self.dilation_array * (self.msFilter_timeLen - 1)
         out1 = self.msConv1(F.pad(out, (int(p[0] // 2), p[0] - int(p[0] // 2)), "constant", 0))
@@ -260,7 +260,7 @@ class Conv_att_simple_new(nn.Module):
         out_flat = out.flatten(start_dim=1)
 
         if self.saveFea:
-            # 下游特征提取模式
+            # CORE-5: 默认 saveFea=True 返回投影头之前的主干特征，供下游 MLP 分类。
             # return_layer=None/0: 返回 backbone 原始 1024 维
             # return_layer=1-4:   返回 projector 第 n 层输出（均为 1024 维）
             if self.return_layer is not None and self.return_layer > 0:

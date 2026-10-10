@@ -6,6 +6,13 @@ See [HYPERAMA_EXPERIMENTS.md](HYPERAMA_EXPERIMENTS.md) for ablation options,
 server launch commands and verification. The original project documentation
 and citation are preserved below.
 
+中文源码学习路线见 [HyperAMA EEG 源码学习方案](SOURCE_READING_GUIDE.md)：
+先掌握大纲与模块职责，再沿调用关系逐函数阅读，最后逐行理解张量、公式与梯度。
+
+配套的 [目录树与逐文件说明](PROJECT_FILE_MAP.md) 列出当前项目文件、各自作用和阅读位置。
+
+时间有限时先读 [五段核心代码讲解](CORE_CODE_GUIDE.md)，并在源码中搜索 CORE-1 至 CORE-5 定位关键计算。
+
 # AMA-EEG: Adaptive Multimodal Alignment for Cross-Subject EEG Emotion Recognition
 
 AMA-EEG aligns EEG representations with text and image semantics for
